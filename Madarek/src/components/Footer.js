@@ -1,112 +1,44 @@
 import Link from 'next/link'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Rss, Linkedin, Instagram, Twitter, Facebook } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-white" dir="rtl">
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo and Description */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 m-4">
-              <div className=" m-4 w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">ادراك</span>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold">مركز مدراك</h3>
-                <p className="text-sm text-gray-300">دراسات الإسلام الحضاري</p>
-              </div>
-            </div>
-            <p className="text-gray-300 mb-6 max-w-md">
-              مركز مدراك هو منصة أكاديمية تهدف إلى تعزيز الدراسات الإسلامية الحضارية من خلال الأبحاث والمقالات والدراسات النقدية. نحن نؤمن بأهمية الفكر الإسلامي في تشكيل الحضارات الإنسانية.
-            </p>
-            <div className="flex space-x-4">
-              <div className="flex items-center space-x-2 text-sm text-gray-300">
-                <Mail className="h-4 w-4" />
-                <span>info@madarak.org</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">روابط سريعة</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-gray-300 hover:text-white transition-colors">
-                  الرئيسية
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/islamic-studies" className="text-gray-300 hover:text-white transition-colors">
-                  الدراسات الإسلامية
-                </Link>
-              </li>
-              <li>
-                <Link href="/category/critical-perspectives" className="text-gray-300 hover:text-white transition-colors">
-                  وجهات نظر نقدية
-                </Link>
-              </li>
-              <li>
-                <Link href="/publications" className="text-gray-300 hover:text-white transition-colors">
-                  المنشورات
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
-                  من نحن
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
-                  من نحن
-                </Link>
-              </li>
-              <li>
-                <Link href="/about#administrators" className="text-gray-300 hover:text-white transition-colors">
-                  الإداريون
-                </Link>
-              </li>
-              <li>
-                <Link href="/about#researchers" className="text-gray-300 hover:text-white transition-colors">
-                  الباحثون
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
-                  اتصل بنا
-                </Link>
-              </li>
-              <li>
-                <Link href="/write-with-us" className="text-gray-300 hover:text-white transition-colors">
-                  اكتب معنا
-                </Link>
-              </li>
-            </ul>
-          </div>
+    <footer className="bg-[#ffffff] border-t border-gray-200 pt-2 pb-2" dir="rtl">
+      <div className="mx-auto max-w-full " dir="rtl">
+        {/* Social Icons */}
+        <div className="flex justify-center gap-6 mb-6 border-b-2 w-100 p-3" dir="rtl">
+          <Link href="#" className="rounded-full border border-gray-300 p-3 hover:bg-gray-100 transition-colors"><Rss className="h-6 w-6 text-gray-700" /></Link>
+          <Link href="#" className="rounded-full border border-gray-300 p-3 hover:bg-gray-100 transition-colors"><Linkedin className="h-6 w-6 text-gray-700" /></Link>
+          <Link href="#" className="rounded-full border border-gray-300 p-3 hover:bg-gray-100 transition-colors"><Instagram className="h-6 w-6 text-gray-700" /></Link>
+          <Link href="#" className="rounded-full border border-gray-300 p-3 hover:bg-gray-100 transition-colors"><Twitter className="h-6 w-6 text-gray-700" /></Link>
+          <Link href="#" className="rounded-full border border-gray-300 p-3 hover:bg-gray-100 transition-colors"><Facebook className="h-6 w-6 text-gray-700" /></Link>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-700">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-300 text-sm">
-              © {new Date().getFullYear()} مركز مدراك. جميع الحقوق محفوظة.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link href="/privacy" className="m-3 text-gray-300 hover:text-white text-sm transition-colors">
-                سياسة الخصوصية
-              </Link>
-              <Link href="/terms" className="m-3 text-gray-300 hover:text-white text-sm transition-colors">
-                شروط الاستخدام
-              </Link>
+        {/* Links and Logo Row */}
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8 py-3" dir="rtl">
+          {/* Links */}
+          <div className="flex flex-col md:flex-row gap-8 md:gap-16 text-center md:text-right" dir="rtl">
+            {/* Logo */}
+            <div className="flex justify-center items-center" dir="rtl">
+              <div className="rounded-full bg-white w-32 h-32 flex items-center justify-center" dir="rtl">
+                {/* Replace with actual logo if available */}
+                <img src="/image/logo1.jpg" alt="logo" width={100} height={100} />
+                </div>
+            </div>
+            <div className="flex flex-col gap-4 text-gray-500 text-xl font-medium" dir="rtl">
+              <Link href="/">الرئيسية</Link>
+              <Link href="/about">من نحن</Link>
+              <Link href="/terms">الشروط والأحكام</Link>
+            </div>
+            <div className="flex flex-col gap-4 text-gray-500 text-xl font-medium" dir="rtl">
+              <Link href="/write-with-us">اكتب معنا</Link>
+              <Link href="/privacy">سياسة الخصوصية</Link>
             </div>
           </div>
+          
+        </div>
+        <div className='text-gray-600  text-center text-sm font-medium py-4 border-t-2 bg-[#f9fafb] dark:bg-gray-800' dir="rtl">
+          جميع الحقوق محفوظة &copy; 2023 <Link href="/" className="text-magazine-primary font-semibold">مدارك</Link>
         </div>
       </div>
     </footer>

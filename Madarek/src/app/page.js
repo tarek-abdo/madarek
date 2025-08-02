@@ -99,7 +99,7 @@ export default function HomePage() {
       </section>
 
       {/* دعوة للانضمام */}
-      <section className="py-16 gradient-bg" dir="rtl">
+      {/* <section className="py-16 gradient-bg" dir="rtl">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
             انضم إلى مجتمع البحث العلمي لدينا
@@ -116,7 +116,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }

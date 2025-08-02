@@ -1,6 +1,8 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, BookOpen, Award } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState } from 'react'
 
 const authors = [
   {
@@ -68,72 +70,80 @@ const authors = [
     slug: "zainab-ali"
   }
 ]
-
 export default function AuthorsSection() {
+  const [current, setCurrent] = useState(0);
+  const visibleCount = 3;
+  const maxIndex = authors.length - visibleCount;
+
+  const handlePrev = () => {
+    setCurrent((prev) => (prev === 0 ? authors.length - 1 : prev - 1));
+  };
+  const handleNext = () => {
+    setCurrent((prev) => (prev === authors.length - 1 ? 0 : prev + 1));
+  };
+
   return (
-    <div className="relative" dir="rtl">
-      {/* Scrollable Container */}
-      <div className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide">
-        {authors.map((author) => (
-          <div key={author.id} className="flex-shrink-0 w-64">
-            <Link href={`/author/${author.slug}`} className="group">
-              <div className="card text-center hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
-                <div className="relative w-32 h-32 mx-auto mb-4 mt-6">
+    <div className="w-full flex flex-col items-center  py-8" dir="rtl">
+      <div className="flex justify-center items-center gap-4 w-full">
+        {/* Left Arrow */}
+        <button
+          onClick={handlePrev}
+          className="bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center text-gray-400 hover:text-primary transition-colors"
+          aria-label="السابق"
+        >
+          <ChevronRight className="h-6 w-6" />
+        </button>
+
+        {/* Cards */}
+        <div className="flex gap-8 w-full max-w-5xl">
+          {[0, 1, 2].map((offset) => {
+            const idx = (current + offset) % authors.length;
+            const author = authors[idx];
+            return (
+              <div key={author.id} className="bg-white rounded-xl shadow-md flex flex-col items-center px-8 py-8 w-full max-w-sm mx-auto">
+                <div className="w-24 h-24 mb-4">
                   <Image
                     src={author.image}
                     alt={author.name}
-                    fill
-                    className="object-cover rounded-full group-hover:scale-105 transition-transform duration-300"
+                    width={96}
+                    height={96}
+                    className="rounded-full object-cover"
                   />
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                
-                <div className="p-6 pt-0">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
-                    {author.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                    {author.specialization}
-                  </p>
-                  
-                  <div className="flex items-center justify-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-                    <div className="flex items-center gap-1">
-                      <BookOpen className="h-3 w-3" />
-                      <span>{author.publications} منشور</span>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 flex items-center justify-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all duration-300">
-                    <span>زيارة الملف الشخصي</span>
-                    <ArrowLeft className="h-4 w-4" />
-                  </div>
-                </div>
+                <h3 className="text-2xl font-semibold text-gray-700 mb-2">{author.name}</h3>
+                <p className="text-lg text-gray-500 mb-4 text-center">{author.specialization}</p>
+                <Link
+                  href={`/author/${author.slug}`}
+                  className="bg-[#F76C5E] text-white rounded-full px-8 py-3 text-lg font-medium shadow hover:bg-[#F76C5E]/90 transition-colors"
+                >
+                  تصفح مقالات الكاتب
+                </Link>
               </div>
-            </Link>
-          </div>
+            );
+          })}
+        </div>
+
+        {/* Right Arrow */}
+        <button
+          onClick={handleNext}
+          className="bg-white shadow-lg rounded-full w-12 h-12 flex items-center justify-center text-gray-400 hover:text-primary transition-colors"
+          aria-label="التالي"
+        >
+          <ChevronLeft className="h-6 w-6" />
+        </button>
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center gap-3 mt-8">
+        {authors.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            className={`w-4 h-4 rounded-full border-none focus:outline-none ${idx === current ? 'bg-gray-400' : 'bg-gray-200'}`}
+            aria-label={`انتقل إلى الكاتب ${idx + 1}`}
+          />
         ))}
       </div>
-      
-      {/* Scroll Indicators */}
-      <div className="flex justify-center mt-8">
-        <div className="flex space-x-2">
-          <div className="w-2 h-2 bg-primary rounded-full"></div>
-          <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-          <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-          <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-        </div>
-      </div>
-      
-      {/* View All Authors Button */}
-      <div className="text-center mt-8">
-        <Link
-          href="/authors"
-          className="btn-outline inline-flex items-center gap-2"
-        >
-          جميع المؤلفين
-          <ArrowLeft className="h-4 w-4" />
-        </Link>
-      </div>
     </div>
-  )
-} 
+  );
+}

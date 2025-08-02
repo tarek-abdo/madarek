@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import { useTheme } from './ThemeProvider'
 import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react'
+import images from 'next/image'
 
 const navigationEn = [
   { name: 'Home', href: '/' },
@@ -48,37 +49,24 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
   const { theme, toggleTheme } = useTheme()
-  const [language, setLanguage] = useState('en')
+  const language = 'ar';
 
   useEffect(() => {
-    document.documentElement.lang = language;
-    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-  }, [language]);
+    document.documentElement.lang = 'ar';
+    document.documentElement.dir = 'rtl';
+  }, []);
 
-  const navigation = language === 'ar' ? navigationAr : navigationEn;
-  const siteTitle = language === 'ar' ? ' مدارك' : 'Madarak Center';
-  const siteSubtitle = language === 'ar' ? 'دراسات الإسلام الحضاري' : 'Civilizational Islam Studies';
+  const navigation = navigationAr;
+  const siteTitle = ' مدارك';
+  const siteSubtitle = 'دراسات الإسلام الحضاري';
 
   return (
-    <header className="bg-white dark:bg-dark-surface shadow-sm sticky top-0 z-50">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-1 lg:px-1" aria-label="Global">
-       
-        <div className="flex lg:flex-4 mx-6">
-          <Link href="/" className="-m-1.5 p-1.5">
-            {/* <span className="sr-only">{siteTitle}</span> */}
-            <div className="flex items-center space-x-2 flex-row">
-              {/* <div className="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">م</span>
-              </div> */}
-              <div>
-                <h4 className="text-2xl font-bold text-gradient">{siteTitle}</h4>
-                {/* <p className="text-xs text-gray-600 dark:text-gray-400">{siteSubtitle}</p> */}
-              </div>
-            </div>
-          </Link>
-        </div>
-        
-        <div className="flex lg:hidden">
+    <header
+      className="bg-white dark:bg-dark-surface shadow-lg sticky top-0 z-50"
+    >
+      <nav className="mx-auto flex max-w-7xl items-center justify-between min-h-[50px] py-2 lg:px-1" aria-label="Global">
+        {/* Right: Toggle Button */}
+        <div className="flex">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-gray-300"
@@ -89,51 +77,25 @@ export default function Header() {
           </button>
         </div>
         
-        <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <div key={item.name} className="relative">
-              {item.submenu && item.submenu.length > 0 ? (
-                <div
-                  className="relative"
-                  onMouseEnter={() => setActiveDropdown(item.name)}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                >
-                  <button className="flex items-center gap-x-1 text-base font-semibold leading-6 text-orange-600 dark:text-gray-100 hover:text-primary transition-colors">
-                    {item.name}
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                  {activeDropdown === item.name && (
-                    <div className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
-                      <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white dark:bg-dark-surface text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
-                        <div className="p-4">
-                          {item.submenu.map((subItem) => (
-                            <div key={subItem.name} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800">
-                              <div>
-                                <Link href={subItem.href} className="font-semibold text-gray-900 dark:text-gray-100">
-                                  {subItem.name}
-                                  <span className="absolute inset-0" />
-                                </Link>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
+        {/* Center: Title and Logo */}
+        <div className="flex-1 flex justify-center">
+          <Link href="/" className="-m-1.5 p-1.5">
+            <div className="flex items-center space-x-2 flex-row">
+              <div className='flex items-center justify-center'>
+                <div style={{maxWidth: 50, height: 50}} className='flex mx-2'>
+                  <img src="/image/logo1.jpg" alt="logo" width={40} height={40} />
                 </div>
-              ) : (
-                <Link
-                  href={item.href}
-                  className="text-base font-semibold leading-6 text-orange-600  dark:text-gray-100 hover:text-primary transition-colors"
+                <h4
+                  className={`text-2xl font-bold text-gradient text-center${language === 'ar' ? ' font-noto-kufi-arabic' : ''}`}
                 >
-                  {item.name}
-                </Link>
-              )}
+                  {siteTitle}
+                </h4>
+              </div>
             </div>
-          ))}
+          </Link>
         </div>
-        
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4 mx-4">
+        {/* Left: Theme Toggle */}
+        <div className="flex items-center">
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
@@ -146,32 +108,19 @@ export default function Header() {
             )}
           </button>
         </div>
-         <div className="flex items-center gap-4 m-4 ">
-          <select
-            value={language}
-            onChange={e => setLanguage(e.target.value)}
-            className="border rounded border-orange-500 py-1 text-sm focus:outline-green bg-white  text-green-900 dark:bg-gray-800 dark:text-white"
-            aria-label={language === 'ar' ? 'اختر اللغة' : 'Select language'}
-          >
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-          </select>
-        </div>
+        
       </nav>
       
-      {/* Mobile menu */}
+      {/* Mobile/Toggle menu for all screen sizes */}
       {mobileMenuOpen && (
-        <div className="lg:hidden">
+        <div>
           <div className="fixed inset-0 z-50" />
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white dark:bg-dark-surface px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Madarak Center</span>
+              <Link href="/" className="-m-2 p-4">
+                <span className="sr-only">Madarak </span>
                 <div className="flex items-center space-x-2">
-                  {/* <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">م</span>
-                  </div> */}
-                  <span className="text-base font-bold text-gradient">Madarak</span>
+                  <span className="text-base font-bold text-gradient">مدارك</span>
                 </div>
               </Link>
               <button
@@ -229,6 +178,7 @@ export default function Header() {
                       </>
                     )}
                   </button>
+                  {/* Language select removed, Arabic only */}
                 </div>
               </div>
             </div>

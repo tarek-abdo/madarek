@@ -136,7 +136,7 @@ export default function PostDelugeSection() {
       </div>
 
       {/* Previous Issues */}
-      <div className="mb-16">
+      <div className="mb-16 ">
         <h3 className="text-2xl font-bold text-magazine-primary mb-8">الإصدارات السابقة</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {previousIssues.map((issue) => (
