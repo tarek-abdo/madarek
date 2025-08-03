@@ -1,48 +1,15 @@
-// import Image from 'next/image'
-// import Link from 'next/link'
-// import { Calendar, User, Tag, ArrowLeft, Share2, BookOpen } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Calendar, User, Tag, ArrowLeft, Share2, BookOpen } from 'lucide-react'
 
-// // Mock data for the blog post
-// const post = {
-//   title: "تطور الفكر الإسلامي في المجتمع المعاصر",
-//   excerpt: "تحليل معمق لكيفية تطور الفكر الإسلامي وتكيفه مع التحديات الحديثة مع الحفاظ على المبادئ الأساسية.",
-//   content: `
-//     <p class="mb-6 text-lg leading-relaxed">
-//       دراسة الفكر الإسلامي في المجتمع المعاصر تقدم تقاطعًا مثيرًا بين التقليد والحداثة، حيث تلتقي المبادئ العريقة بتحديات وفرص القرن الحادي والعشرين. يستكشف هذا المقال التطور الديناميكي للتقاليد الفكرية الإسلامية وتكيفها مع المشهد الاجتماعي والسياسي والتكنولوجي المعاصر.
-//     </p>
-    
-//     <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 mt-8">الأسس التاريخية</h2>
-//     <p class="mb-6 leading-relaxed">
-//       لطالما تميز الفكر الإسلامي بقدرته على التكيف والاستجابة للظروف المتغيرة. من الفترة الكلاسيكية مرورًا بالعصر الوسيط، أظهر العلماء المسلمون مرونة ملحوظة في مواجهة التحديات الجديدة مع الحفاظ على المبادئ الأساسية. ويستمر هذا التقليد الديناميكي حتى اليوم، حيث يتعامل المفكرون الإسلاميون المعاصرون مع قضايا مثل العولمة والتحول الرقمي.
-//     </p>
-    
-//     <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 mt-8">التحديات المعاصرة</h2>
-//     <p class="mb-6 leading-relaxed">
-//       يواجه الفكر الإسلامي الحديث تحديات غير مسبوقة، منها سرعة التغير التكنولوجي، وعولمة الثقافة والاقتصاد، والتداخل المعقد بين الرؤى الدينية والعلمانية. تتطلب هذه التحديات مقاربات مبتكرة تحترم الحكمة التقليدية وتحتضن إمكانيات جديدة لازدهار الإنسان.
-//     </p>
-    
-//     <blockquote class="border-l-4 border-primary pl-6 my-8 italic text-gray-700 dark:text-gray-300">
-//       "الاختبار الحقيقي للفكر الإسلامي في العصر الحديث ليس قدرته على مقاومة التغيير، بل قدرته على توجيه التغيير بما يعزز كرامة الإنسان ويحقق العدالة."
-//     </blockquote>
-    
-//     <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 mt-8">اتجاهات المستقبل</h2>
-//     <p class="mb-6 leading-relaxed">
-//       مع التطلع إلى المستقبل، يجب أن يستمر الفكر الإسلامي في التطور مع البقاء متجذرًا في مبادئه الأساسية. ويتطلب ذلك حوارًا مستمرًا بين التقليد والابتكار، وبين السياقات المحلية والرؤى العالمية، وبين الحكمة الدينية والمعرفة العلمانية.
-//     </p>
-    
-//     <p class="mb-6 leading-relaxed">
-//       إن تطور الفكر الإسلامي في المجتمع المعاصر ليس مجرد تمرين أكاديمي، بل هو مساهمة حيوية في المشروع الإنساني الأشمل لبناء مجتمعات أكثر عدالة ورحمة واستدامة. ومن خلال التفاعل الواعي مع التقليد والحداثة، يمكن للمفكرين الإسلاميين رسم طريق للمستقبل يحترم الماضي ويحتضن الجديد.
-//     </p>
-//   `,
-//   image: "https://images.unsplash.com/photo-1584553421349-35574794bed8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-//   category: "الدراسات الإسلامية",
-//   author: {
-//     name: "د. أحمد حسن",
-//     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
-//     bio: "أستاذ الدراسات الإسلامية بجامعة القاهرة، لديه أكثر من 20 عامًا من الخبرة في أبحاث الحضارة الإسلامية."
-//   },
-//   date: "2024-01-15",
-//   readTime: "٨ دقائق قراءة",
-//   tags: ["الفلسفة الإسلامية", "الفكر المعاصر", "دراسات حضارية"],
-//   slug: "evolution-islamic-thought-contemporary-society"
-// }
+
+export default function PostPage() {
+  // You can use the mock post data above for rendering
+  // Or fetch post data based on slug param
+  return (
+    <div className="max-w-3xl mx-auto py-12">
+      <h1 className="text-3xl font-bold mb-4">تفاصيل المقال</h1>
+      <p className="text-gray-600">هنا سيتم عرض تفاصيل المقال بناءً على الرابط.</p>
+    </div>
+  );
+}
